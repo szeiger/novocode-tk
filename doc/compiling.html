@@ -9,26 +9,20 @@
 
 <H1>Compiling the Toolkit</H1>
 
-<P>A simple <A href="../Makefile">Makefile</A> which should work on
-most Unix platforms is supplied to compile everything. You need to install
-<A href="http://home.pages.de/~szeiger/jbuildtree.html">JBuildTree</A>
-to use it.</P>
+<P>Starting with release 1.4, Novocode Toolkit is built using a
+<A href="../build.xml">build script</A> for <a href="http://ant.apache.org">ANT</a>.
+If you have got an official release that you don't want to modify, you can
+simply use the pre-built binaries and API documentation. If you have made
+modifications or pulled a version off the CVS repository, you need to run ANT
+to rebuild the project. Use "<code>ant -projecthelp</code>" to get a list of available build
+targets.
+</P>
 
-<P>The following make targets are supported:
-<UL>
-  <LI> <EM>all</EM> - Compile all classes </LI>
-  <LI> <EM>alld</EM> - Compile all classes with deprecation warnings </LI>
-  <LI> <EM>clean</EM> - Remove all compiled class files </LI>
-  <LI> <EM>tk.jar</EM> - Create lib/tk.jar </LI>
-  <LI> <EM>dist</EM> - Create zip and tar.gz archives for a standard
-       Novocode Toolkit distribution </LI>
-  <LI> <EM>distclean</EM> - Remove lib/tk.jar and everything created by
-       "make dist" </LI>
-  <LI> <EM>apidocs</EM> - Use javadoc to create the API documentation and
-       post-process it with the beautifier scripts </LI>
-  <LI> <EM>apidocs-clean</EM> - Remove API documentation created by
-       "make apidocs" </LI>
-</UL></P>
+<P>Since Novocode Toolkit is now managed as an Eclipse 2.1 project, you can
+also <a href="availability.html#eclipse">import it into your Eclipse
+workspace</a> and let Eclipse take care of compiling the source files. The
+build script can also be run from within Eclipse.
+</P>
 
 <HR>
 
