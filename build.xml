@@ -3,10 +3,12 @@
   <description>Novocode Toolkit</description>
 
   <!-- Locations -->
-  <property name="src" location="src"/>
-  <property name="apidoc"  location="doc/api"/>
-
-  <target name="doc" description="Create API documentation" >
+  <property name="src"       location="src" />
+  <property name="apidoc"    location="doc/api" />
+  <property name="lib"       location="lib" />
+  <property name="tkclasses" location="classes/novocode-tk" />
+ 
+  <target name="doc" depends="doc-clean" description="Create API documentation" >
     <javadoc sourcepath="${src}"
              destdir="${apidoc}"
              packagenames="com.*"
@@ -19,6 +21,15 @@
 
   <target name="doc-clean" description="Delete created API documentation" >
     <delete dir="${apidoc}" />
+  </target>
+
+  <target name="lib" depends="lib-clean" description="Create lib/tk.jar" >
+    <mkdir dir="${lib}" />
+    <jar destfile="${lib}/tk.jar" basedir="${tkclasses}" />
+  </target>
+
+  <target name="lib-clean" description="Delete lib/" >
+    <delete dir="${lib}" />
   </target>
 
 </project>
