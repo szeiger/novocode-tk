@@ -1,0 +1,24 @@
+<project name="novocode-tk" default="doc" basedir=".">
+
+  <description>Novocode Toolkit</description>
+
+  <!-- Locations -->
+  <property name="src" location="src"/>
+  <property name="apidoc"  location="doc/api"/>
+
+  <target name="doc" description="Create API documentation" >
+    <javadoc sourcepath="${src}"
+             destdir="${apidoc}"
+             packagenames="com.*"
+             locale="en_US"
+             version="yes"
+             author="yes"
+             use="yes"
+             windowtitle="Novocode Toolkit" />
+  </target>
+
+  <target name="doc-clean" description="Delete created API documentation" >
+    <delete dir="${apidoc}" />
+  </target>
+
+</project>
