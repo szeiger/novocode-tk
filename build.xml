@@ -1,12 +1,17 @@
-<project name="novocode-tk" default="doc" basedir=".">
+<project name="novocode-tk" default="dist" basedir=".">
 
   <description>Novocode Toolkit</description>
 
   <!-- Locations -->
   <property name="src"       location="src" />
+  <property name="exsrc"     location="examples" />
+  <property name="tkclasses" location="classes/novocode-tk" />
+  <property name="exclasses" location="classes/examples" />
   <property name="apidoc"    location="doc/api" />
   <property name="lib"       location="lib" />
-  <property name="tkclasses" location="classes/novocode-tk" />
+  <property name="dist"      location="dist" />
+
+  <property name="distver"   value="1.3.x" />
  
   <target name="doc" depends="doc-clean" description="Create API documentation" >
     <javadoc sourcepath="${src}"
@@ -23,13 +28,68 @@
     <delete dir="${apidoc}" />
   </target>
 
-  <target name="lib" depends="lib-clean" description="Create lib/tk.jar" >
+  <target name="lib" depends="lib-clean" description="Create JAR files" >
     <mkdir dir="${lib}" />
     <jar destfile="${lib}/tk.jar" basedir="${tkclasses}" />
+    <jar destfile="${lib}/examples.jar" basedir="${exclasses}" />
   </target>
 
   <target name="lib-clean" description="Delete lib/" >
     <delete dir="${lib}" />
   </target>
+
+  <target name="build" depends="build-clean" description="Compile the sources with javac" >
+    <mkdir dir="${tkclasses}" />
+    <mkdir dir="${exclasses}" />
+    <javac target="1.2"
+           fork="yes"
+           srcdir="${src}"
+           destdir="${tkclasses}" />
+    <copy file="${src}/com/novocode/tk/Version.java" todir="${tkclasses}/com/novocode/tk" />
+    <replace file="${tkclasses}/com/novocode/tk/Version.java" token="@@ current_version @@" value="${distver}" />
+    <javac target="1.2"
+           fork="yes"
+           srcdir="${tkclasses}"
+           includes="com/novocode/tk/Version.java"
+           destdir="${tkclasses}" />
+    <javac target="1.2"
+           fork="yes"
+           srcdir="${exsrc}"
+           destdir="${exclasses}"
+           classpath="${tkclasses}" />
+  </target>
+
+  <target name="build-clean" description="Delete class files" >
+    <delete dir="${tkclasses}" />
+    <delete dir="${exclasses}" />
+  </target>
+
+  <target name="dist" depends="dist-clean,build,doc,lib" description="Create dist files" >
+    <mkdir dir="${dist}" />
+    <mkdir dir="${dist}/novocode-tk-${distver}" />
+    <copy todir="${dist}/novocode-tk-${distver}" >
+      <fileset dir="."  defaultexcludes="no" >
+        <exclude name="dist/" />
+        <exclude name="classes/" />
+      </fileset>
+    </copy>
+    <zip destfile="${dist}/novocode-tk-${distver}.zip" compress="true">
+      <fileset dir="${dist}/novocode-tk-${distver}"
+               defaultexcludes="no"
+               excludes="**/CVS/" />
+    </zip>
+    <tar destfile="${dist}/novocode-tk-${distver}.tar.bz2"
+         compression="bzip2"
+         basedir="${dist}"
+         includes="novocode-tk-${distver}/"
+         excludes="**/CVS/"
+         defaultexcludes="no" />
+  </target>
+
+  <target name="dist-clean" description="Delete dist files" >
+    <delete dir="${dist}" />
+  </target>
+
+  <target name="clean" description="Clean up everything" depends="doc-clean,lib-clean,build-clean,dist-clean" />
 
 </project>

@@ -44,7 +44,7 @@ public class Version
    * compiled.
    */
 
-  public static final String STATIC_VERSION = "1.3.0+dev";
+  public static final String STATIC_VERSION = "@@ current_version @@";
 
 
   /**
