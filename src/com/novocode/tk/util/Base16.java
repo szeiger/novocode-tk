@@ -29,8 +29,6 @@ package com.novocode.tk.util;
  *
  * <p><dl><dt><b>Maturity:</b><dd>
  * Mature. Fixed API. Fully documented.
- * Methods for encoding and decoding binary data should be added.
- * </dl>
  *
  * @author Stefan Zeiger
  * @see com.novocode.tk.util.Base64

@@ -27,8 +27,7 @@ package com.novocode.tk.util;
  * <p>This class uses single-line Base64 coding as required by RFC1945.
  *
  * <p><dl><dt><b>Maturity:</b><dd>
- * Relatively mature. Fully documented.
- * Methods for encoding and decoding binary data should be added.
+ * Mature. Fully documented.
  * </dl>
  *
  * @author Stefan Zeiger
@@ -177,6 +176,146 @@ public final class Base64
     }
 
     return dec.toString();
+  }
+
+
+  /**
+   * Encodes binary data.
+   * The code is aligned to 3 byte boundaries by appending '=' characters
+   * at the end if necessary. The upper 8 bits are discarded.
+   *
+   * @param dec the data to be encoded
+   * @return The Base64 code for the data
+   * @see #encode(java.lang.String, boolean)
+   * @see #decode
+   */
+
+  public static String encodeBytes(byte[] dec)
+  {
+    return encodeBytes(dec, true);
+  }
+
+
+  /**
+   * Encodes binary data. The upper 8 bits are discarded.
+   *
+   * @param dec the data to be encoded
+   * @param align if set to true the code is aligned to 3 byte boundaries
+   *              by appending '=' characters at the end if necessary.
+   * @return The Base64 code for the data
+   * @see #encode(java.lang.String)
+   * @see #decode
+   */
+
+  public static String encodeBytes(byte[] dec, boolean align)
+  {
+    int l = dec.length;
+    StringBuffer enc = new StringBuffer(((l*3)+1)/2);
+    int state=0, group=0;
+
+    for(int i=0; i<l; i++)
+    {
+      switch(state)
+      {
+        case 0:
+          group = dec[i];
+          break;
+
+        case 1:
+          group = (group<<8) + dec[i];
+          break;
+
+        default:
+          group = (group<<8) + dec[i];
+          enc.append(codes[(group>>18)&63]);
+          enc.append(codes[(group>>12)&63]);
+          enc.append(codes[(group>>6)&63]);
+          enc.append(codes[(group)&63]);
+          state = -1;
+      }
+      state++;
+    }
+
+    switch(state)
+    {
+      case 1:
+        enc.append(codes[(group>>6)&63]);
+        enc.append(codes[(group)&63]);
+        if(align) enc.append("==");
+        break;
+
+      case 2:
+        enc.append(codes[(group>>12)&63]);
+        enc.append(codes[(group>>6)&63]);
+        enc.append(codes[(group)&63]);
+        if(align) enc.append("=");
+    }
+
+    return enc.toString();
+  }
+
+
+  /**
+   * Decodes binary data.
+   *
+   * @param enc the Base64 code of the data
+   * @return the decoded data
+   * @see #encode
+   */
+
+  public static byte[] decodeBytes(String enc)
+  {
+    int l = enc.length();
+    ByteString dec = new ByteString(l);
+    int state=0, group=0;
+
+    for(int i=0; i<l; i++)
+    {
+      byte b = (byte)(enc.charAt(i));
+      int n=-1;
+
+      if((b>=(byte)('A')) && (b<=(byte)('Z'))) n = b-(byte)('A');
+      else if((b>=(byte)('a')) && (b<=(byte)('z'))) n = b-(byte)('a')+26;
+      else if((b>=(byte)('1')) && (b<=(byte)('9'))) n = b-(byte)('1')+53;
+      else if(b==(byte)('0')) n = 52;
+      else if(b==(byte)('+')) n = 62;
+      else if(b==(byte)('/')) n = 63;
+      else if(b==(byte)('=')) break;
+      else continue; // ignore unknown characters
+
+      switch(state)
+      {
+        case 0:
+          group = n;
+          break;
+
+        case 1:
+        case 2:
+          group = (group<<6) + n;
+          break;
+
+        default:
+          group = (group<<6) + n;
+          dec.append((byte)((group>>16)&255));
+          dec.append((byte)((group>>8)&255));
+          dec.append((byte)(group&255));
+          state = -1;
+      }
+      state++;
+    }
+
+    switch(state)
+    {
+      case 3:
+        dec.append((byte)((group>>8)&255));
+        dec.append((byte)(group&255));
+        break;
+
+      case 2:
+        dec.append((byte)(group&255));
+    }
+
+    return dec.subCopy(0).data;
   }
 
 
