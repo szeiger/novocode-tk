@@ -28,7 +28,7 @@
     <delete dir="${apidoc}" />
   </target>
 
-  <target name="lib" depends="lib-clean" description="Create JAR files" >
+  <target name="lib" depends="lib-clean,build" description="Create JAR files" >
     <mkdir dir="${lib}" />
     <jar destfile="${lib}/tk.jar" basedir="${tkclasses}" />
     <jar destfile="${lib}/examples.jar" basedir="${exclasses}" />
