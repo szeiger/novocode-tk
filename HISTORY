@@ -1,0 +1,212 @@
+This is the history of all changes that were made to Novocode Toolkit. The
+versions are listed latest to earliest.
+
+RELEASE 1.3.0 (2002-12-29)
+
+    * Fixed bug in com.novocode.tk.util.Base64.decode.
+
+    * Added class com.novocode.tk.io.IndentWriter.
+
+    * Fixed bug in com.novocode.tk.util.Timer.
+
+    * Added method decode(String) to com.novocode.tk.util.SGMLLiteral.
+
+    * Added a constructor to com.novocode.tk.awt.StringRequester for
+      creating a multi-line TextArea instead of a TextField. Changed the
+      getTextField method into a getTextComponent method.
+
+    * Added method com.novocode.tk.awt.MessageDialog.ask.
+
+    * Fixed bug in com.novocode.tk.io.ByteStringInputStream's viewLine
+      method: Under certain circumstances single "\n" line terminators
+      were not recognized as such.
+
+    * Fixed bug in FileStreamExternalFormConverter.
+
+    * Added methods encodeBytes and decodeBytes to Base16.
+
+
+RELEASE 1.2.0 (2000-06-26)
+
+    * Added class com.novocode.tk.text.HttpDateFormat.
+
+    * The ConstByteString class was broken. The fields data, length and
+      offset are now declared as public directly in ConstByteString
+      instead of ByteString.
+
+    * CommandLineConfigurator displays better error messages for
+      InvocationTargetExceptions.
+
+    * CommandLineConfigurator's automatic top text creation did not
+      work correctly for beans with default properties.
+
+    * Changed CommandLineConfigurator's add...() method signatures to
+      include an optional "typeStr" parameter.
+
+    * CommandLineConfigurator's addPropertyOption() methods can now
+      create the option's long name automatically (like for automatically
+      added property options) when null is specified.
+
+    * Added class com.novocode.tk.beans.ExternalFormConverter and several
+      subclasses.
+
+    * Renamed class com.novocode.tk.io.AsciiInputStreamReader to
+      com.novocode.tk.io.Latin1InputStreamReader.
+
+    * Added method getException() to com.novocode.tk.io.StreamConnector.
+
+    * Removed class com.novocode.tk.net.PacketSwitch.
+
+    * Removed method inPlace() from com.novocode.tk.util.StringArraySort.
+
+
+RELEASE 1.1.0 (1999-06-22)
+
+    * FileNFile.obtainFile() will now return a File object even if the
+      file in question does not exist.
+
+    * Added class com.novocode.tk.io.AugmentedFileNFile.
+
+    * Removed "flags" argument of NFile.copyTo() and the
+      COPYTO_RECURSIVE flag.
+
+    * NFile.copyTo() could not copy files with both, children and content.
+
+    * Added method decodeEntity() to com.novocode.tk.util.SGMLLiteral.
+
+    * com.novocode.tk.awt.HTMLFlowText can now parse entity names via
+      com.novocode.tk.util.SGMLLiteral.
+
+
+RELEASE 1.0.0 (1999-05-08)
+
+    * First Open Source release under MPL.
+
+    * Renamed package novocode.tk to com.novocode.tk.
+
+    * Added class com.novocode.tk.mime.IanaCharset.
+
+    * Added protected constructors to com.novocode.tk.io.NFile
+      and com.novocode.tk.util.ConstByteString to get rid of the
+      public default constructors.
+
+    * Added private constructors to com.novocode.tk.Version,
+      com.novocode.tk.net.URLDecoder, com.novocode.tk.util.SGMLLiteral,
+      com.novocode.tk.util.Wrapper, com.novocode.tk.util.Base16,
+      com.novocode.tk.util.Base64, com.novocode.tk.util.HeaderParser,
+      com.novocode.tk.util.CommandTokenizer and
+      com.novocode.tk.mime.EncodedWord to get rid of the public
+      default constructors.
+
+    * Changed the look of the javadoc-generated documentation.
+
+    * Wrote more API documentation for existing classes.
+
+    * The constructors of com.novocode.tk.beans.CommandLineConfigurator
+      can now throw an IntrospectionException.
+
+    * Renamed class com.novocode.tk.security.SandboxedClassLoader
+      to com.novocode.tk.security.SandboxProvider.
+
+    * Fixed some bugs in CommandLineConfigTest example.
+
+
+RELEASE 0.9.1 (1999-03-04)
+
+    * novocode.tk.net.FormParser can now parse malformed input
+      (including index query strings) without aborting with a
+      StringIndexOutOfBoundsException. Unparsable parts of the
+      option string are silently ignored.
+
+
+RELEASE 0.9 (1998-12-24)
+
+    * Added method novocode.tk.net.FormData.toString().
+
+    * Optimized some ByteString methods.
+
+    * Added class novocode.tk.io.AsciiInputStreamReader.
+
+    * Added class novocode.tk.beans.CommandLineConfigurator.
+
+    * Added class novocode.tk.util.Queue.
+
+    * Added class novocode.tk.net.PacketSwitch.
+
+    * Added class novocode.tk.Version.
+
+
+RELEASE 0.8 (1998-11-23)
+
+    * Added class novocode.tk.io.ByteArrayBufferOutputStream.
+
+    * Optimized Tooltip handling.
+
+    * Added setCloseOutput() method to novocode.tk.io.StreamConnector.
+
+    * Added hasURLRepresentation() and getURL() methods to class
+      novocode.tk.io.NFile.
+
+    * Added class novocode.tk.util.EmptyEnumeration.
+
+
+RELEASE 0.7 (1998-10-24)
+
+    * novocode.tk.util.Wrapper displays more detailed information
+      when an uncaught Exception is generated by the called
+      class.
+
+
+RELEASE 0.6 (1998-06-28)
+
+    * ThreadPool.PooledThread now calls the ThreadGroup's
+      uncaughtException() method when a RuntimeException is
+      thrown in a pooled thread.
+
+    * Removed obsolete class novocode.tk.util.RFCDate.
+
+
+RELEASE 0.5 (1998-05-11)
+
+    * Fixed a bug in novocode.tk.util.DirClassLoader: Creating a
+      new DirClassLoader with the copy constructor always set the
+      'resolve' flag to false.
+
+    * DirClassLoader now checks the timestamp of all loaded classes
+      (not only the main class) when the hasChanged() method is
+      called.
+
+
+RELEASE 0.4 (1998-05-06)
+
+    * Added class novocode.tk.util.ThreadPool
+
+
+RELEASE 0.3 (1998-04-09)
+
+    * Rewrote some calls to deprecated JDK methods
+
+    * Added class novocode.tk.net.URLParser
+
+    * Restructured FlowText and Tooltip classes
+
+    * Added class novocode.tk.awt.WorkIndicator
+
+    * Renamed class novocode.tk.awt.TextRequester to MessageDialog
+
+    * Added class novocode.tk.awt.StringRequester
+
+    * More extensive API documentation with maturity comments.
+
+    * Tootips: Only one tooltip will be shown at a time. A "forgotten"
+      tooltip is automatically hidden when a new tooltip is shown.
+
+
+RELEASE 0.2 (1998-02-02)
+
+    * Added class novocode.tk.util.Wrapper
+
+
+RELEASE 0.1 (1997-12-29)
+
+    * Separated toolkit classes from the NetForge 0.26 source

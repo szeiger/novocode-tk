@@ -1,0 +1,9 @@
+Novocode Toolkit
+
+The Novocode Toolkit is a collection of general-purpose Java classes.
+It includes some useful AWT components, a package for decoding MIME
+data, an Input- to OutputStream connector, the byte-based string class
+ByteString plus assorted classes, some ClassLoaders, Base16 and Base64
+encoders and decoders, an event scheduler and many other useful things.
+
+See doc/index.html for detailed documentation.
