@@ -1,0 +1,21 @@
+BODY
+{
+  margin-left: 1em; margin-right: 1em;
+  background-color: #ffffff;
+}
+
+BODY, TD, TH, P, H1, H2, H3, H4, H5, DL
+{
+  color: #000000;
+  font-family: sans-serif;
+}
+
+CODE, PRE { font-family: Courier,fixed; }
+
+UL, UL LI { list-style-type: disc; }
+
+OL.minor { list-style-type: i; }
+
+DL { margin-bottom: 0.5em; }
+
+A.nav { text-decoration: none; }

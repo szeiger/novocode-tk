@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<HTML>
+<HEAD>
+<TITLE>Novocode Toolkit - Compiling the Toolkit</TITLE>
+<!-- Changed by: Stefan Zeiger,  4-May-1999 -->
+<LINK rel=Stylesheet type="text/css" title="Novocode Toolkit Style" href="tk-style.css">
+</HEAD>
+<BODY>
+
+<H1>Compiling the Toolkit</H1>
+
+<P>A simple <A href="../Makefile">Makefile</A> which should work on
+most Unix platforms is supplied to compile everything. You need to install
+<A href="http://home.pages.de/~szeiger/jbuildtree.html">JBuildTree</A>
+to use it.</P>
+
+<P>The following make targets are supported:
+<UL>
+  <LI> <EM>all</EM> - Compile all classes </LI>
+  <LI> <EM>alld</EM> - Compile all classes with deprecation warnings </LI>
+  <LI> <EM>clean</EM> - Remove all compiled class files </LI>
+  <LI> <EM>tk.jar</EM> - Create lib/tk.jar </LI>
+  <LI> <EM>dist</EM> - Create zip and tar.gz archives for a standard
+       Novocode Toolkit distribution </LI>
+  <LI> <EM>distclean</EM> - Remove lib/tk.jar and everything created by
+       "make dist" </LI>
+  <LI> <EM>apidocs</EM> - Use javadoc to create the API documentation and
+       post-process it with the beautifier scripts </LI>
+  <LI> <EM>apidocs-clean</EM> - Remove API documentation created by
+       "make apidocs" </LI>
+</UL></P>
+
+<HR>
+
+<SMALL>
+  <A href="index.html" class=nav>[Novocode Toolkit Documentation]</A>
+</SMALL>
+
+</BODY>
+</HTML>
