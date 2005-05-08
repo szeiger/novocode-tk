@@ -42,17 +42,20 @@
     <mkdir dir="${tkclasses}" />
     <mkdir dir="${exclasses}" />
     <javac target="1.2"
+           source="1.2"
            fork="yes"
            srcdir="${src}"
            destdir="${tkclasses}" />
     <copy file="${src}/com/novocode/tk/Version.java" todir="${tkclasses}/com/novocode/tk" />
     <replace file="${tkclasses}/com/novocode/tk/Version.java" token="@@ current_version @@" value="${distver}" />
     <javac target="1.2"
+           source="1.2"
            fork="yes"
            srcdir="${tkclasses}"
            includes="com/novocode/tk/Version.java"
            destdir="${tkclasses}" />
     <javac target="1.2"
+           source="1.2"
            fork="yes"
            srcdir="${exsrc}"
            destdir="${exclasses}"
